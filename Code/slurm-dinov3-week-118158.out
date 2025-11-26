@@ -1,0 +1,7 @@
+Using existing sys.path entry: /home/jowatson/Deep Learning/Code
+Using device: cuda
+ExperimentConfig(disc21_root=PosixPath('/home/jowatson/Deep Learning/DISC21'), ndec_root=PosixPath('/home/jowatson/Deep Learning/NDEC'), model_name='facebook/dinov3-vitb16-pretrain-lvd1689m', img_size_train=224, img_size_eval=224, batch_size_train=64, batch_size_eval=64, batch_size_pairs=64, num_workers=4, lr_backbone=1e-05, lr_head=0.0001, weight_decay=0.0001, temperature_ntxent=0.2, temperature_kl=0.1, lambda_kl=1.0, lambda_local=1.0, lambda_bce=1.0, lambda_asl_mtr=1.0, num_epochs_disc21=30, num_epochs_ndec=20, early_stopping_patience_disc21=3, early_stopping_min_delta_disc21=0.0001, early_stopping_patience_ndec=2, early_stopping_min_delta_ndec=0.0001, checkpoint_path=PosixPath('artifacts/checkpoints/ced_model_final.pt'))
+Train images: 1,000,000 | References: 1,000,000 | Dev queries: 50,000 | Test queries: 50,000 | Dev pairs: 9,999 | Test pairs: 9,999
+CLS: torch.Size([2, 768]) | Patch grid: torch.Size([2, 14, 14, 768]) | Flat patches: torch.Size([2, 196, 768])
+CED descriptor shape: torch.Size([2, 1536])
+Classifier logits shape: torch.Size([2, 1])
