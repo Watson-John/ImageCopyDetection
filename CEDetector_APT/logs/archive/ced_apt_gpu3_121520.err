@@ -1,0 +1,120 @@
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 401, in <module>
+[rank2]:     main()
+[rank2]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 311, in main
+[rank2]:     train_metrics = train_epoch(
+[rank2]:                     ^^^^^^^^^^^^
+[rank2]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 109, in train_epoch
+[rank2]:     loss_dict = criterion(
+[rank2]:                 ^^^^^^^^^^
+[rank2]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/jowatson/Deep Learning/CEDetector_APT/utils/losses.py", line 210, in forward
+[rank2]:     simclr_loss = self.simclr_loss(cls_tokens_i, cls_tokens_j)
+[rank2]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/jowatson/Deep Learning/CEDetector_APT/utils/losses.py", line 48, in forward
+[rank2]:     sim_matrix = sim_matrix.masked_fill(mask, -9e15)
+[rank2]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]: RuntimeError: value cannot be converted to type at::Half without overflow
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 401, in <module>
+[rank1]:     main()
+[rank1]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 311, in main
+[rank1]:     train_metrics = train_epoch(
+[rank1]:                     ^^^^^^^^^^^^
+[rank1]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 109, in train_epoch
+[rank1]:     loss_dict = criterion(
+[rank1]:                 ^^^^^^^^^^
+[rank1]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/jowatson/Deep Learning/CEDetector_APT/utils/losses.py", line 210, in forward
+[rank1]:     simclr_loss = self.simclr_loss(cls_tokens_i, cls_tokens_j)
+[rank1]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/jowatson/Deep Learning/CEDetector_APT/utils/losses.py", line 48, in forward
+[rank1]:     sim_matrix = sim_matrix.masked_fill(mask, -9e15)
+[rank1]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: RuntimeError: value cannot be converted to type at::Half without overflow
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 401, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 311, in main
+[rank0]:     train_metrics = train_epoch(
+[rank0]:                     ^^^^^^^^^^^^
+[rank0]:   File "/home/jowatson/Deep Learning/CEDetector_APT/train.py", line 109, in train_epoch
+[rank0]:     loss_dict = criterion(
+[rank0]:                 ^^^^^^^^^^
+[rank0]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jowatson/Deep Learning/CEDetector_APT/utils/losses.py", line 210, in forward
+[rank0]:     simclr_loss = self.simclr_loss(cls_tokens_i, cls_tokens_j)
+[rank0]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/jowatson/Deep Learning/CEDetector_APT/utils/losses.py", line 48, in forward
+[rank0]:     sim_matrix = sim_matrix.masked_fill(mask, -9e15)
+[rank0]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: RuntimeError: value cannot be converted to type at::Half without overflow
+[rank0]:[W1213 07:09:31.182328489 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W1213 07:09:32.197000 2982624 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2982679 closing signal SIGTERM
+W1213 07:09:32.198000 2982624 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2982680 closing signal SIGTERM
+E1213 07:09:33.013000 2982624 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 2 (pid: 2982681) of binary: /home/jowatson/.conda/envs/gpu_training/bin/python
+Traceback (most recent call last):
+  File "/home/jowatson/.conda/envs/gpu_training/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/distributed/run.py", line 918, in main
+    run(args)
+  File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jowatson/.conda/envs/gpu_training/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-12-13_07:09:32
+  host      : gpu3.cl.clarku.edu
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2982681)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

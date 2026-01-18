@@ -1,0 +1,810 @@
+=========================================
+SLURM Job ID: 121527
+Job Name: ced_baseline_gpu4
+Node: gpu4
+Start Time: Sat Dec 13 17:41:44 EST 2025
+Model: Baseline CED (no APT)
+=========================================
+Activating conda environment: gpu_training
+GPUs available:
+GPU 0: NVIDIA A30 (UUID: GPU-0d8cf53b-0ff7-53a3-9669-89ebc3143d63)
+GPU 1: NVIDIA A30 (UUID: GPU-775d5a9a-f72c-2c95-9965-5a7604516d10)
+=========================================
+Training Configuration:
+  Model: Baseline CED (no APT)
+  Epochs (DISC21): 18
+  Epochs (NDEC): 3
+  Batch Size: 12
+  Learning Rate: 2e-4
+  Subset Fraction: 0.5
+  Mixed Precision: true
+  Save Directory: ./checkpoints_baseline_20251213_174147
+  Number of GPUs: 2
+  Num Workers (per rank): 46
+=========================================
+Starting baseline CED training (no APT)...
+Found 20 reference directories
+DDP initialized: 2 GPUs (NCCL backend)
+Baseline CED (no APT) - TF32 enabled for Ampere GPUs
+Training Baseline CEDetector (no APT) on 2 GPUs
+Arguments: Namespace(disc21_path='/home/jowatson/Deep Learning/DISC21', ndec_path='/home/jowatson/Deep Learning/NDEC', hf_token_path='/home/jowatson/Deep Learning/Code/.env', epochs=18, ndec_epochs=3, batch_size=12, lr=0.0002, subset_fraction=0.5, num_workers=46, use_amp=True, dinov3_model='facebook/dinov3-vitb16-pretrain-lvd1689m', freeze_backbone=False, save_dir='./checkpoints_baseline_20251213_174147', save_every=5)
+Logging metrics to: ./checkpoints_baseline_20251213_174147/training_metrics.jsonl
+
+Loading DISC21 dataset...
+Found 20 reference directories
+Indexed 1000000 reference images
+Indexed 1000000 reference images
+Using 5000 samples (50.0% of dataset)
+Using 5000 samples (50.0% of dataset)
+Found 5000 valid query-reference pairs
+Found 5000 valid query-reference pairs
+
+Creating Baseline CEDetector model (no APT)...
+Loading DiNOv3 model: facebook/dinov3-vitb16-pretrain-lvd1689m
+Loading DiNOv3 model: facebook/dinov3-vitb16-pretrain-lvd1689m
+DiNOv3 loaded: embed_dim=768, layers=12
+DiNOv3 loaded: embed_dim=768, layers=12
+gpu4:6783:6783 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu4:6783:6783 [0] NCCL INFO Bootstrap : Using eth0:10.0.0.104<0>
+gpu4:6783:6783 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu4:6783:6783 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu4:6783:6783 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu4:6783:6783 [0] NCCL INFO cudaDriverVersion 12040
+NCCL version 2.21.5+cuda11.0
+gpu4:6784:6784 [1] NCCL INFO cudaDriverVersion 12040
+gpu4:6784:6784 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu4:6784:6784 [1] NCCL INFO Bootstrap : Using eth0:10.0.0.104<0>
+gpu4:6784:6784 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu4:6784:6784 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu4:6784:6784 [1] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu4:6784:6784 [1] NCCL INFO Comm config Blocking set to 1
+gpu4:6784:15793 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+gpu4:6783:6783 [0] NCCL INFO Comm config Blocking set to 1
+gpu4:6783:15794 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+gpu4:6784:15793 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu4:6783:15794 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu4:6784:15793 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB eth0:10.0.0.104<0>
+gpu4:6784:15793 [1] NCCL INFO Using non-device net plugin version 0
+gpu4:6784:15793 [1] NCCL INFO Using network IB
+gpu4:6783:15794 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB eth0:10.0.0.104<0>
+gpu4:6783:15794 [0] NCCL INFO Using non-device net plugin version 0
+gpu4:6783:15794 [0] NCCL INFO Using network IB
+gpu4:6783:15794 [0] NCCL INFO ncclCommInitRank comm 0xe4e8e20 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 31000 commId 0xb7a6dbf7f94609ee - Init START
+gpu4:6784:15793 [1] NCCL INFO ncclCommInitRank comm 0x19b5ebb0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 4b000 commId 0xb7a6dbf7f94609ee - Init START
+gpu4:6783:15794 [0] NCCL INFO Setting affinity for GPU 0 to ffff,0000ffff
+gpu4:6784:15793 [1] NCCL INFO Setting affinity for GPU 1 to ffff,0000ffff
+gpu4:6784:15793 [1] NCCL INFO comm 0x19b5ebb0 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
+gpu4:6783:15794 [0] NCCL INFO comm 0xe4e8e20 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
+gpu4:6783:15794 [0] NCCL INFO Channel 00/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 01/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 02/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 03/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 04/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 05/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 06/08 :    0   1
+gpu4:6783:15794 [0] NCCL INFO Channel 07/08 :    0   1
+gpu4:6784:15793 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1 [4] -1/-1/-1->1->0 [5] -1/-1/-1->1->0 [6] 0/-1/-1->1->-1 [7] 0/-1/-1->1->-1
+gpu4:6784:15793 [1] NCCL INFO P2P Chunksize set to 524288
+gpu4:6783:15794 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] -1/-1/-1->0->1 [3] -1/-1/-1->0->1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] -1/-1/-1->0->1 [7] -1/-1/-1->0->1
+gpu4:6783:15794 [0] NCCL INFO P2P Chunksize set to 524288
+gpu4:6784:15793 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6784:15793 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu4:6783:15794 [0] NCCL INFO Connected all rings
+gpu4:6783:15794 [0] NCCL INFO Connected all trees
+gpu4:6784:15793 [1] NCCL INFO Connected all rings
+gpu4:6784:15793 [1] NCCL INFO Connected all trees
+gpu4:6784:15793 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpu4:6784:15793 [1] NCCL INFO 8 coll channels, 8 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+gpu4:6783:15794 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpu4:6783:15794 [0] NCCL INFO 8 coll channels, 8 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+gpu4:6783:15794 [0] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu4:6783:15794 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu4:6783:15794 [0] NCCL INFO ncclCommInitRank comm 0xe4e8e20 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 31000 commId 0xb7a6dbf7f94609ee - Init COMPLETE
+gpu4:6784:15793 [1] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu4:6784:15793 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu4:6784:15793 [1] NCCL INFO ncclCommInitRank comm 0x19b5ebb0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 4b000 commId 0xb7a6dbf7f94609ee - Init COMPLETE
+Mixed precision training: Enabled
+
+Training on DISC21 for 18 epochs...
+Epoch 0 [0/209] Loss: 8.3949 | Batch Time: 40.84s | ETA: 2:22:14
+Epoch 0 [10/209] Loss: 9.7255 | Batch Time: 7.65s | ETA: 0:30:57
+Epoch 0 [20/209] Loss: 7.8299 | Batch Time: 5.30s | ETA: 0:24:36
+Epoch 0 [30/209] Loss: 5.0039 | Batch Time: 5.52s | ETA: 0:21:31
+Epoch 0 [40/209] Loss: 4.5952 | Batch Time: 5.57s | ETA: 0:19:24
+Epoch 0 [50/209] Loss: 4.0396 | Batch Time: 5.11s | ETA: 0:15:53
+Epoch 0 [60/209] Loss: 3.4558 | Batch Time: 6.38s | ETA: 0:14:45
+Epoch 0 [70/209] Loss: 3.1615 | Batch Time: 6.85s | ETA: 0:13:35
+Epoch 0 [80/209] Loss: 2.8543 | Batch Time: 6.70s | ETA: 0:12:33
+Epoch 0 [90/209] Loss: 2.8187 | Batch Time: 7.64s | ETA: 0:11:35
+Epoch 0 [100/209] Loss: 2.3286 | Batch Time: 6.70s | ETA: 0:10:35
+Epoch 0 [110/209] Loss: 2.4617 | Batch Time: 7.46s | ETA: 0:09:40
+Epoch 0 [120/209] Loss: 2.6451 | Batch Time: 6.56s | ETA: 0:08:40
+Epoch 0 [130/209] Loss: 2.2744 | Batch Time: 4.95s | ETA: 0:07:33
+Epoch 0 [140/209] Loss: 2.3412 | Batch Time: 5.38s | ETA: 0:06:33
+Epoch 0 [150/209] Loss: 2.4850 | Batch Time: 6.46s | ETA: 0:05:40
+Epoch 0 [160/209] Loss: 2.3953 | Batch Time: 4.51s | ETA: 0:04:38
+Epoch 0 [170/209] Loss: 1.8453 | Batch Time: 5.31s | ETA: 0:03:43
+Epoch 0 [180/209] Loss: 2.7264 | Batch Time: 5.34s | ETA: 0:02:50
+Epoch 0 [190/209] Loss: 2.2843 | Batch Time: 4.91s | ETA: 0:01:51
+Epoch 0 [200/209] Loss: 2.7114 | Batch Time: 4.95s | ETA: 0:00:52
+
+Epoch 0 Train Metrics:
+  µAP: 0.5178
+  R@P90: 0.0000
+  Accuracy: 0.5024
+  Avg Loss: 3.5134
+Epoch 0 completed in 21.06 minutes
+
+============================================================
+Progress: 1/18 epochs (5.6%)
+Elapsed: 0:21:03
+ETA: 5:58:02
+Total estimated time: 6:19:06
+============================================================
+
+Epoch 1 [0/209] Loss: 2.5033 | Batch Time: 7.55s | ETA: 0:26:17
+Epoch 1 [10/209] Loss: 1.3172 | Batch Time: 7.27s | ETA: 0:21:37
+Epoch 1 [20/209] Loss: 1.6419 | Batch Time: 6.25s | ETA: 0:19:36
+Epoch 1 [30/209] Loss: 2.1008 | Batch Time: 6.29s | ETA: 0:18:06
+Epoch 1 [40/209] Loss: 2.0920 | Batch Time: 6.53s | ETA: 0:16:50
+Epoch 1 [50/209] Loss: 2.0134 | Batch Time: 5.50s | ETA: 0:15:33
+Epoch 1 [60/209] Loss: 1.5485 | Batch Time: 5.57s | ETA: 0:14:14
+Epoch 1 [70/209] Loss: 2.2068 | Batch Time: 4.95s | ETA: 0:13:06
+Epoch 1 [80/209] Loss: 2.0695 | Batch Time: 5.09s | ETA: 0:12:08
+Epoch 1 [90/209] Loss: 1.3655 | Batch Time: 5.10s | ETA: 0:11:11
+Epoch 1 [100/209] Loss: 1.7606 | Batch Time: 5.61s | ETA: 0:10:17
+Epoch 1 [110/209] Loss: 1.8765 | Batch Time: 6.70s | ETA: 0:09:18
+Epoch 1 [120/209] Loss: 2.0603 | Batch Time: 5.92s | ETA: 0:08:22
+Epoch 1 [130/209] Loss: 1.8663 | Batch Time: 5.47s | ETA: 0:07:16
+Epoch 1 [140/209] Loss: 2.0453 | Batch Time: 5.97s | ETA: 0:06:16
+Epoch 1 [150/209] Loss: 1.7311 | Batch Time: 5.87s | ETA: 0:05:16
+Epoch 1 [160/209] Loss: 1.8307 | Batch Time: 5.09s | ETA: 0:04:18
+Epoch 1 [170/209] Loss: 1.5411 | Batch Time: 4.46s | ETA: 0:03:25
+Epoch 1 [180/209] Loss: 2.2797 | Batch Time: 5.50s | ETA: 0:02:35
+Epoch 1 [190/209] Loss: 0.9871 | Batch Time: 5.33s | ETA: 0:01:41
+Epoch 1 [200/209] Loss: 2.0972 | Batch Time: 5.54s | ETA: 0:00:48
+
+Epoch 1 Train Metrics:
+  µAP: 0.5053
+  R@P90: 0.0000
+  Accuracy: 0.5060
+  Avg Loss: 1.8774
+Epoch 1 completed in 19.47 minutes
+
+============================================================
+Progress: 2/18 epochs (11.1%)
+Elapsed: 0:40:32
+ETA: 5:24:16
+Total estimated time: 6:04:48
+============================================================
+
+Epoch 2 [0/209] Loss: 2.4839 | Batch Time: 10.51s | ETA: 0:36:35
+Epoch 2 [10/209] Loss: 1.3649 | Batch Time: 6.26s | ETA: 0:21:19
+Epoch 2 [20/209] Loss: 1.9351 | Batch Time: 7.38s | ETA: 0:19:12
+Epoch 2 [30/209] Loss: 1.6311 | Batch Time: 6.20s | ETA: 0:17:57
+Epoch 2 [40/209] Loss: 0.4625 | Batch Time: 5.21s | ETA: 0:16:53
+Epoch 2 [50/209] Loss: 1.7323 | Batch Time: 5.26s | ETA: 0:15:39
+Epoch 2 [60/209] Loss: 1.9682 | Batch Time: 5.41s | ETA: 0:14:32
+Epoch 2 [70/209] Loss: 0.9520 | Batch Time: 5.34s | ETA: 0:13:34
+Epoch 2 [80/209] Loss: 1.4513 | Batch Time: 5.58s | ETA: 0:12:34
+Epoch 2 [90/209] Loss: 2.3429 | Batch Time: 6.64s | ETA: 0:11:33
+Epoch 2 [100/209] Loss: 1.8183 | Batch Time: 6.98s | ETA: 0:10:30
+Epoch 2 [110/209] Loss: 1.8010 | Batch Time: 6.88s | ETA: 0:09:31
+Epoch 2 [120/209] Loss: 1.4691 | Batch Time: 5.48s | ETA: 0:08:25
+Epoch 2 [130/209] Loss: 1.6873 | Batch Time: 4.76s | ETA: 0:07:17
+Epoch 2 [140/209] Loss: 1.1223 | Batch Time: 5.06s | ETA: 0:06:15
+Epoch 2 [150/209] Loss: 1.4204 | Batch Time: 5.06s | ETA: 0:05:15
+Epoch 2 [160/209] Loss: 1.5055 | Batch Time: 5.55s | ETA: 0:04:16
+Epoch 2 [170/209] Loss: 2.1902 | Batch Time: 5.21s | ETA: 0:03:23
+Epoch 2 [180/209] Loss: 1.6270 | Batch Time: 5.29s | ETA: 0:02:32
+Epoch 2 [190/209] Loss: 1.5136 | Batch Time: 5.10s | ETA: 0:01:39
+Epoch 2 [200/209] Loss: 0.7421 | Batch Time: 4.96s | ETA: 0:00:47
+
+Epoch 2 Train Metrics:
+  µAP: 0.4965
+  R@P90: 0.0042
+  Accuracy: 0.5044
+  Avg Loss: 1.5783
+Epoch 2 completed in 19.61 minutes
+
+============================================================
+Progress: 3/18 epochs (16.7%)
+Elapsed: 1:00:08
+ETA: 5:00:42
+Total estimated time: 6:00:51
+============================================================
+
+Epoch 3 [0/209] Loss: 1.7175 | Batch Time: 10.23s | ETA: 0:35:37
+Epoch 3 [10/209] Loss: 1.5017 | Batch Time: 5.30s | ETA: 0:20:41
+Epoch 3 [20/209] Loss: 1.1723 | Batch Time: 6.60s | ETA: 0:18:36
+Epoch 3 [30/209] Loss: 1.4666 | Batch Time: 6.35s | ETA: 0:17:15
+Epoch 3 [40/209] Loss: 1.7300 | Batch Time: 5.95s | ETA: 0:16:05
+Epoch 3 [50/209] Loss: 1.4729 | Batch Time: 6.13s | ETA: 0:14:45
+Epoch 3 [60/209] Loss: 2.0509 | Batch Time: 4.77s | ETA: 0:13:51
+Epoch 3 [70/209] Loss: 1.8642 | Batch Time: 5.68s | ETA: 0:12:58
+Epoch 3 [80/209] Loss: 0.1837 | Batch Time: 6.15s | ETA: 0:12:06
+Epoch 3 [90/209] Loss: 1.5549 | Batch Time: 6.30s | ETA: 0:11:16
+Epoch 3 [100/209] Loss: 0.2827 | Batch Time: 6.23s | ETA: 0:10:26
+Epoch 3 [110/209] Loss: 1.1797 | Batch Time: 6.79s | ETA: 0:09:28
+Epoch 3 [120/209] Loss: 1.8315 | Batch Time: 6.28s | ETA: 0:08:29
+Epoch 3 [130/209] Loss: 0.7295 | Batch Time: 5.13s | ETA: 0:07:23
+Epoch 3 [140/209] Loss: 1.2615 | Batch Time: 5.49s | ETA: 0:06:25
+Epoch 3 [150/209] Loss: 1.5249 | Batch Time: 4.75s | ETA: 0:05:24
+Epoch 3 [160/209] Loss: 1.5349 | Batch Time: 4.73s | ETA: 0:04:24
+Epoch 3 [170/209] Loss: 0.7904 | Batch Time: 5.56s | ETA: 0:03:29
+Epoch 3 [180/209] Loss: 1.2474 | Batch Time: 5.58s | ETA: 0:02:36
+Epoch 3 [190/209] Loss: 1.7981 | Batch Time: 6.25s | ETA: 0:01:41
+Epoch 3 [200/209] Loss: 0.9976 | Batch Time: 5.41s | ETA: 0:00:48
+
+Epoch 3 Train Metrics:
+  µAP: 0.4546
+  R@P90: 0.0000
+  Accuracy: 0.5140
+  Avg Loss: 1.4466
+Epoch 3 completed in 19.48 minutes
+
+============================================================
+Progress: 4/18 epochs (22.2%)
+Elapsed: 1:19:37
+ETA: 4:38:40
+Total estimated time: 5:58:17
+============================================================
+
+Epoch 4 [0/209] Loss: 1.4040 | Batch Time: 9.07s | ETA: 0:31:36
+Epoch 4 [10/209] Loss: 1.7822 | Batch Time: 4.77s | ETA: 0:19:40
+Epoch 4 [20/209] Loss: 1.7678 | Batch Time: 5.61s | ETA: 0:18:04
+Epoch 4 [30/209] Loss: 1.3520 | Batch Time: 6.86s | ETA: 0:17:24
+Epoch 4 [40/209] Loss: 1.7618 | Batch Time: 6.10s | ETA: 0:16:17
+Epoch 4 [50/209] Loss: 1.3673 | Batch Time: 6.19s | ETA: 0:15:10
+Epoch 4 [60/209] Loss: 1.8244 | Batch Time: 5.89s | ETA: 0:14:10
+Epoch 4 [70/209] Loss: 2.1110 | Batch Time: 5.77s | ETA: 0:13:15
+Epoch 4 [80/209] Loss: 1.6575 | Batch Time: 5.95s | ETA: 0:12:06
+Epoch 4 [90/209] Loss: 1.9274 | Batch Time: 6.73s | ETA: 0:11:13
+Epoch 4 [100/209] Loss: 0.9617 | Batch Time: 6.76s | ETA: 0:10:14
+Epoch 4 [110/209] Loss: 1.8241 | Batch Time: 6.80s | ETA: 0:09:23
+Epoch 4 [120/209] Loss: 0.0481 | Batch Time: 5.39s | ETA: 0:08:26
+Epoch 4 [130/209] Loss: 1.4951 | Batch Time: 5.06s | ETA: 0:07:27
+Epoch 4 [140/209] Loss: 1.7337 | Batch Time: 4.26s | ETA: 0:06:25
+Epoch 4 [150/209] Loss: 1.1834 | Batch Time: 5.75s | ETA: 0:05:25
+Epoch 4 [160/209] Loss: 1.5289 | Batch Time: 5.67s | ETA: 0:04:25
+Epoch 4 [170/209] Loss: 1.4927 | Batch Time: 5.69s | ETA: 0:03:29
+Epoch 4 [180/209] Loss: 1.6435 | Batch Time: 4.86s | ETA: 0:02:33
+Epoch 4 [190/209] Loss: 0.7299 | Batch Time: 4.81s | ETA: 0:01:40
+Epoch 4 [200/209] Loss: 1.5959 | Batch Time: 5.27s | ETA: 0:00:47
+
+Epoch 4 Train Metrics:
+  µAP: 0.4965
+  R@P90: 0.0000
+  Accuracy: 0.5080
+  Avg Loss: 1.4274
+Epoch 4 completed in 19.42 minutes
+
+============================================================
+Progress: 5/18 epochs (27.8%)
+Elapsed: 1:39:02
+ETA: 4:17:30
+Total estimated time: 5:56:33
+============================================================
+
+Saved checkpoint: ./checkpoints_baseline_20251213_174147/checkpoint_epoch_5.pt
+Saved best model with µAP: 0.4965
+Epoch 5 [0/209] Loss: 1.7365 | Batch Time: 5.54s | ETA: 0:19:18
+Epoch 5 [10/209] Loss: 1.5925 | Batch Time: 4.55s | ETA: 0:18:32
+Epoch 5 [20/209] Loss: 1.8174 | Batch Time: 4.87s | ETA: 0:17:25
+Epoch 5 [30/209] Loss: 1.7484 | Batch Time: 4.89s | ETA: 0:16:41
+Epoch 5 [40/209] Loss: 1.4856 | Batch Time: 5.25s | ETA: 0:15:45
+Epoch 5 [50/209] Loss: 1.2673 | Batch Time: 5.11s | ETA: 0:15:01
+Epoch 5 [60/209] Loss: 1.7347 | Batch Time: 4.69s | ETA: 0:14:08
+Epoch 5 [70/209] Loss: 1.8924 | Batch Time: 4.94s | ETA: 0:13:19
+Epoch 5 [80/209] Loss: 0.9958 | Batch Time: 5.10s | ETA: 0:12:23
+Epoch 5 [90/209] Loss: 0.9359 | Batch Time: 5.14s | ETA: 0:11:30
+Epoch 5 [100/209] Loss: 0.5598 | Batch Time: 5.42s | ETA: 0:10:28
+Epoch 5 [110/209] Loss: 1.5669 | Batch Time: 5.57s | ETA: 0:09:30
+Epoch 5 [120/209] Loss: 1.6960 | Batch Time: 4.62s | ETA: 0:08:26
+Epoch 5 [130/209] Loss: 1.3225 | Batch Time: 5.34s | ETA: 0:07:23
+Epoch 5 [140/209] Loss: 0.9377 | Batch Time: 4.72s | ETA: 0:06:22
+Epoch 5 [150/209] Loss: 1.6550 | Batch Time: 5.09s | ETA: 0:05:23
+Epoch 5 [160/209] Loss: 0.7060 | Batch Time: 5.71s | ETA: 0:04:24
+Epoch 5 [170/209] Loss: 0.6849 | Batch Time: 4.88s | ETA: 0:03:30
+Epoch 5 [180/209] Loss: 1.6424 | Batch Time: 5.49s | ETA: 0:02:34
+Epoch 5 [190/209] Loss: 0.6462 | Batch Time: 5.22s | ETA: 0:01:40
+Epoch 5 [200/209] Loss: 0.8653 | Batch Time: 4.55s | ETA: 0:00:47
+
+Epoch 5 Train Metrics:
+  µAP: 0.4879
+  R@P90: 0.0000
+  Accuracy: 0.4860
+  Avg Loss: 1.3358
+Epoch 5 completed in 19.64 minutes
+
+============================================================
+Progress: 6/18 epochs (33.3%)
+Elapsed: 1:58:43
+ETA: 3:57:26
+Total estimated time: 5:56:09
+============================================================
+
+Epoch 6 [0/209] Loss: 1.5576 | Batch Time: 10.18s | ETA: 0:35:28
+Epoch 6 [10/209] Loss: 0.9129 | Batch Time: 4.55s | ETA: 0:20:08
+Epoch 6 [20/209] Loss: 0.5677 | Batch Time: 5.09s | ETA: 0:18:18
+Epoch 6 [30/209] Loss: 1.0545 | Batch Time: 4.74s | ETA: 0:17:17
+Epoch 6 [40/209] Loss: 1.6816 | Batch Time: 5.25s | ETA: 0:16:15
+Epoch 6 [50/209] Loss: 1.3698 | Batch Time: 5.47s | ETA: 0:15:01
+Epoch 6 [60/209] Loss: 1.1465 | Batch Time: 5.30s | ETA: 0:14:08
+Epoch 6 [70/209] Loss: 1.7610 | Batch Time: 5.14s | ETA: 0:13:09
+Epoch 6 [80/209] Loss: 1.4635 | Batch Time: 6.95s | ETA: 0:12:12
+Epoch 6 [90/209] Loss: 1.1172 | Batch Time: 5.02s | ETA: 0:11:14
+Epoch 6 [100/209] Loss: 1.2548 | Batch Time: 6.08s | ETA: 0:10:17
+Epoch 6 [110/209] Loss: 1.7100 | Batch Time: 5.61s | ETA: 0:09:17
+Epoch 6 [120/209] Loss: 1.4476 | Batch Time: 4.86s | ETA: 0:08:25
+Epoch 6 [130/209] Loss: 1.6128 | Batch Time: 5.04s | ETA: 0:07:23
+Epoch 6 [140/209] Loss: 1.1555 | Batch Time: 5.67s | ETA: 0:06:23
+Epoch 6 [150/209] Loss: 0.8293 | Batch Time: 5.45s | ETA: 0:05:24
+Epoch 6 [160/209] Loss: 1.0358 | Batch Time: 6.33s | ETA: 0:04:29
+Epoch 6 [170/209] Loss: 1.0820 | Batch Time: 6.08s | ETA: 0:03:31
+Epoch 6 [180/209] Loss: 0.4449 | Batch Time: 5.97s | ETA: 0:02:36
+Epoch 6 [190/209] Loss: 1.5618 | Batch Time: 5.49s | ETA: 0:01:42
+Epoch 6 [200/209] Loss: 1.0414 | Batch Time: 5.27s | ETA: 0:00:48
+
+Epoch 6 Train Metrics:
+  µAP: 0.5107
+  R@P90: 0.0000
+  Accuracy: 0.4992
+  Avg Loss: 1.3034
+Epoch 6 completed in 19.56 minutes
+
+============================================================
+Progress: 7/18 epochs (38.9%)
+Elapsed: 2:18:16
+ETA: 3:37:18
+Total estimated time: 5:55:35
+============================================================
+
+Epoch 7 [0/209] Loss: 1.3300 | Batch Time: 13.27s | ETA: 0:46:13
+Epoch 7 [10/209] Loss: 1.4810 | Batch Time: 5.51s | ETA: 0:20:43
+Epoch 7 [20/209] Loss: 1.4296 | Batch Time: 6.25s | ETA: 0:19:00
+Epoch 7 [30/209] Loss: 1.0971 | Batch Time: 5.80s | ETA: 0:17:48
+Epoch 7 [40/209] Loss: 1.4457 | Batch Time: 5.81s | ETA: 0:16:41
+Epoch 7 [50/209] Loss: 1.5764 | Batch Time: 4.99s | ETA: 0:15:18
+Epoch 7 [60/209] Loss: 0.7105 | Batch Time: 5.31s | ETA: 0:14:25
+Epoch 7 [70/209] Loss: 1.5167 | Batch Time: 6.00s | ETA: 0:13:28
+Epoch 7 [80/209] Loss: 1.6044 | Batch Time: 6.41s | ETA: 0:12:26
+Epoch 7 [90/209] Loss: 1.4781 | Batch Time: 5.88s | ETA: 0:11:22
+Epoch 7 [100/209] Loss: 1.2988 | Batch Time: 6.65s | ETA: 0:10:23
+Epoch 7 [110/209] Loss: 1.8142 | Batch Time: 6.56s | ETA: 0:09:25
+Epoch 7 [120/209] Loss: 0.9031 | Batch Time: 5.98s | ETA: 0:08:27
+Epoch 7 [130/209] Loss: 1.4413 | Batch Time: 5.70s | ETA: 0:07:25
+Epoch 7 [140/209] Loss: 1.3879 | Batch Time: 5.79s | ETA: 0:06:28
+Epoch 7 [150/209] Loss: 1.0126 | Batch Time: 5.75s | ETA: 0:05:26
+Epoch 7 [160/209] Loss: 1.1552 | Batch Time: 5.46s | ETA: 0:04:27
+Epoch 7 [170/209] Loss: 0.6716 | Batch Time: 5.81s | ETA: 0:03:30
+Epoch 7 [180/209] Loss: 0.9726 | Batch Time: 5.70s | ETA: 0:02:36
+Epoch 7 [190/209] Loss: 1.1205 | Batch Time: 6.27s | ETA: 0:01:42
+Epoch 7 [200/209] Loss: 1.3592 | Batch Time: 5.88s | ETA: 0:00:48
+
+Epoch 7 Train Metrics:
+  µAP: 0.5109
+  R@P90: 0.0016
+  Accuracy: 0.5088
+  Avg Loss: 1.2358
+Epoch 7 completed in 19.73 minutes
+
+============================================================
+Progress: 8/18 epochs (44.4%)
+Elapsed: 2:38:00
+ETA: 3:17:30
+Total estimated time: 5:55:31
+============================================================
+
+Epoch 8 [0/209] Loss: 1.1210 | Batch Time: 8.73s | ETA: 0:30:23
+Epoch 8 [10/209] Loss: 1.4767 | Batch Time: 5.15s | ETA: 0:20:13
+Epoch 8 [20/209] Loss: 1.1034 | Batch Time: 5.65s | ETA: 0:19:13
+Epoch 8 [30/209] Loss: 1.4636 | Batch Time: 6.25s | ETA: 0:17:57
+Epoch 8 [40/209] Loss: 1.0228 | Batch Time: 5.99s | ETA: 0:16:41
+Epoch 8 [50/209] Loss: 0.4700 | Batch Time: 5.61s | ETA: 0:15:34
+Epoch 8 [60/209] Loss: 1.1867 | Batch Time: 5.87s | ETA: 0:14:30
+Epoch 8 [70/209] Loss: 1.3527 | Batch Time: 5.49s | ETA: 0:13:20
+Epoch 8 [80/209] Loss: 1.1039 | Batch Time: 4.86s | ETA: 0:12:12
+Epoch 8 [90/209] Loss: 1.6126 | Batch Time: 4.89s | ETA: 0:11:18
+Epoch 8 [100/209] Loss: 1.5836 | Batch Time: 5.62s | ETA: 0:10:14
+Epoch 8 [110/209] Loss: 1.1284 | Batch Time: 5.42s | ETA: 0:09:19
+Epoch 8 [120/209] Loss: 0.7666 | Batch Time: 4.88s | ETA: 0:08:17
+Epoch 8 [130/209] Loss: 1.1442 | Batch Time: 5.34s | ETA: 0:07:19
+Epoch 8 [140/209] Loss: 1.3713 | Batch Time: 5.60s | ETA: 0:06:18
+Epoch 8 [150/209] Loss: 1.3405 | Batch Time: 4.99s | ETA: 0:05:21
+Epoch 8 [160/209] Loss: 1.4430 | Batch Time: 5.63s | ETA: 0:04:24
+Epoch 8 [170/209] Loss: 1.5386 | Batch Time: 5.69s | ETA: 0:03:30
+Epoch 8 [180/209] Loss: 1.6568 | Batch Time: 5.25s | ETA: 0:02:37
+Epoch 8 [190/209] Loss: 1.1587 | Batch Time: 4.93s | ETA: 0:01:42
+Epoch 8 [200/209] Loss: 1.3759 | Batch Time: 4.69s | ETA: 0:00:48
+
+Epoch 8 Train Metrics:
+  µAP: 0.5026
+  R@P90: 0.0000
+  Accuracy: 0.5048
+  Avg Loss: 1.2236
+Epoch 8 completed in 19.63 minutes
+
+============================================================
+Progress: 9/18 epochs (50.0%)
+Elapsed: 2:57:38
+ETA: 2:57:38
+Total estimated time: 5:55:16
+============================================================
+
+Epoch 9 [0/209] Loss: 1.0762 | Batch Time: 9.79s | ETA: 0:34:05
+Epoch 9 [10/209] Loss: 1.3586 | Batch Time: 5.75s | ETA: 0:20:18
+Epoch 9 [20/209] Loss: 1.3426 | Batch Time: 5.69s | ETA: 0:18:33
+Epoch 9 [30/209] Loss: 1.1896 | Batch Time: 6.50s | ETA: 0:17:29
+Epoch 9 [40/209] Loss: 1.1801 | Batch Time: 6.22s | ETA: 0:16:25
+Epoch 9 [50/209] Loss: 1.6288 | Batch Time: 7.07s | ETA: 0:15:19
+Epoch 9 [60/209] Loss: 1.0617 | Batch Time: 6.62s | ETA: 0:14:20
+Epoch 9 [70/209] Loss: 1.2851 | Batch Time: 6.29s | ETA: 0:13:26
+Epoch 9 [80/209] Loss: 1.1228 | Batch Time: 6.05s | ETA: 0:12:27
+Epoch 9 [90/209] Loss: 1.5723 | Batch Time: 6.66s | ETA: 0:11:31
+Epoch 9 [100/209] Loss: 0.4520 | Batch Time: 6.98s | ETA: 0:10:27
+Epoch 9 [110/209] Loss: 0.3366 | Batch Time: 5.91s | ETA: 0:09:30
+Epoch 9 [120/209] Loss: 1.4494 | Batch Time: 5.20s | ETA: 0:08:27
+Epoch 9 [130/209] Loss: 1.7221 | Batch Time: 5.63s | ETA: 0:07:23
+Epoch 9 [140/209] Loss: 0.9604 | Batch Time: 5.75s | ETA: 0:06:20
+Epoch 9 [150/209] Loss: 0.9652 | Batch Time: 5.03s | ETA: 0:05:19
+Epoch 9 [160/209] Loss: 1.5082 | Batch Time: 4.91s | ETA: 0:04:22
+Epoch 9 [170/209] Loss: 1.2887 | Batch Time: 4.86s | ETA: 0:03:28
+Epoch 9 [180/209] Loss: 1.2596 | Batch Time: 4.78s | ETA: 0:02:35
+Epoch 9 [190/209] Loss: 1.1586 | Batch Time: 4.94s | ETA: 0:01:41
+Epoch 9 [200/209] Loss: 1.2298 | Batch Time: 4.77s | ETA: 0:00:48
+
+Epoch 9 Train Metrics:
+  µAP: 0.4730
+  R@P90: 0.0000
+  Accuracy: 0.4904
+  Avg Loss: 1.1301
+Epoch 9 completed in 19.67 minutes
+
+============================================================
+Progress: 10/18 epochs (55.6%)
+Elapsed: 3:17:18
+ETA: 2:37:50
+Total estimated time: 5:55:08
+============================================================
+
+Saved checkpoint: ./checkpoints_baseline_20251213_174147/checkpoint_epoch_10.pt
+Epoch 10 [0/209] Loss: 1.3517 | Batch Time: 5.04s | ETA: 0:17:33
+Epoch 10 [10/209] Loss: 1.3393 | Batch Time: 5.02s | ETA: 0:19:04
+Epoch 10 [20/209] Loss: 1.5404 | Batch Time: 4.87s | ETA: 0:17:59
+Epoch 10 [30/209] Loss: 0.3519 | Batch Time: 6.28s | ETA: 0:17:07
+Epoch 10 [40/209] Loss: 1.5260 | Batch Time: 5.89s | ETA: 0:16:10
+Epoch 10 [50/209] Loss: 0.5254 | Batch Time: 5.84s | ETA: 0:15:07
+Epoch 10 [60/209] Loss: 1.6981 | Batch Time: 4.93s | ETA: 0:13:56
+Epoch 10 [70/209] Loss: 1.0624 | Batch Time: 6.76s | ETA: 0:13:02
+Epoch 10 [80/209] Loss: 0.9664 | Batch Time: 6.02s | ETA: 0:12:03
+Epoch 10 [90/209] Loss: 1.4843 | Batch Time: 4.78s | ETA: 0:11:06
+Epoch 10 [100/209] Loss: 0.4330 | Batch Time: 5.04s | ETA: 0:10:18
+Epoch 10 [110/209] Loss: 1.1340 | Batch Time: 5.57s | ETA: 0:09:29
+Epoch 10 [120/209] Loss: 1.3544 | Batch Time: 5.38s | ETA: 0:08:28
+Epoch 10 [130/209] Loss: 1.1407 | Batch Time: 4.58s | ETA: 0:07:22
+Epoch 10 [140/209] Loss: 0.8833 | Batch Time: 5.33s | ETA: 0:06:21
+Epoch 10 [150/209] Loss: 1.4807 | Batch Time: 5.38s | ETA: 0:05:21
+Epoch 10 [160/209] Loss: 0.6757 | Batch Time: 5.42s | ETA: 0:04:24
+Epoch 10 [170/209] Loss: 1.2320 | Batch Time: 5.34s | ETA: 0:03:27
+Epoch 10 [180/209] Loss: 0.0367 | Batch Time: 5.59s | ETA: 0:02:35
+Epoch 10 [190/209] Loss: 1.2814 | Batch Time: 5.86s | ETA: 0:01:42
+Epoch 10 [200/209] Loss: 1.2904 | Batch Time: 5.76s | ETA: 0:00:48
+
+Epoch 10 Train Metrics:
+  µAP: 0.4960
+  R@P90: 0.0000
+  Accuracy: 0.5056
+  Avg Loss: 1.2004
+Epoch 10 completed in 19.62 minutes
+
+============================================================
+Progress: 11/18 epochs (61.1%)
+Elapsed: 3:36:57
+ETA: 2:18:03
+Total estimated time: 5:55:01
+============================================================
+
+Epoch 11 [0/209] Loss: 1.3386 | Batch Time: 4.50s | ETA: 0:15:39
+Epoch 11 [10/209] Loss: 0.7662 | Batch Time: 5.88s | ETA: 0:18:21
+Epoch 11 [20/209] Loss: 1.5398 | Batch Time: 5.56s | ETA: 0:17:20
+Epoch 11 [30/209] Loss: 1.4719 | Batch Time: 6.58s | ETA: 0:16:40
+Epoch 11 [40/209] Loss: 0.7339 | Batch Time: 5.33s | ETA: 0:15:44
+Epoch 11 [50/209] Loss: -0.2985 | Batch Time: 5.11s | ETA: 0:14:58
+Epoch 11 [60/209] Loss: 1.3944 | Batch Time: 5.63s | ETA: 0:14:03
+Epoch 11 [70/209] Loss: 1.3762 | Batch Time: 5.55s | ETA: 0:13:17
+Epoch 11 [80/209] Loss: 1.2841 | Batch Time: 6.18s | ETA: 0:12:23
+Epoch 11 [90/209] Loss: 1.1609 | Batch Time: 5.49s | ETA: 0:11:27
+Epoch 11 [100/209] Loss: 0.6628 | Batch Time: 7.00s | ETA: 0:10:35
+Epoch 11 [110/209] Loss: 1.2261 | Batch Time: 6.03s | ETA: 0:09:41
+Epoch 11 [120/209] Loss: 0.8298 | Batch Time: 4.98s | ETA: 0:08:41
+Epoch 11 [130/209] Loss: 1.0513 | Batch Time: 4.93s | ETA: 0:07:34
+Epoch 11 [140/209] Loss: 0.6663 | Batch Time: 5.03s | ETA: 0:06:32
+Epoch 11 [150/209] Loss: 1.3271 | Batch Time: 4.86s | ETA: 0:05:27
+Epoch 11 [160/209] Loss: 1.1399 | Batch Time: 4.90s | ETA: 0:04:26
+Epoch 11 [170/209] Loss: 1.0287 | Batch Time: 4.41s | ETA: 0:03:29
+Epoch 11 [180/209] Loss: 1.3771 | Batch Time: 4.59s | ETA: 0:02:35
+Epoch 11 [190/209] Loss: 1.0337 | Batch Time: 5.67s | ETA: 0:01:41
+Epoch 11 [200/209] Loss: 1.0680 | Batch Time: 6.01s | ETA: 0:00:47
+
+Epoch 11 Train Metrics:
+  µAP: 0.5098
+  R@P90: 0.0000
+  Accuracy: 0.5160
+  Avg Loss: 1.1347
+Epoch 11 completed in 19.62 minutes
+
+============================================================
+Progress: 12/18 epochs (66.7%)
+Elapsed: 3:56:34
+ETA: 1:58:17
+Total estimated time: 5:54:52
+============================================================
+
+Epoch 12 [0/209] Loss: 1.4168 | Batch Time: 6.08s | ETA: 0:21:11
+Epoch 12 [10/209] Loss: 1.1702 | Batch Time: 5.67s | ETA: 0:18:35
+Epoch 12 [20/209] Loss: 1.2562 | Batch Time: 5.14s | ETA: 0:17:36
+Epoch 12 [30/209] Loss: 1.6672 | Batch Time: 4.23s | ETA: 0:16:42
+Epoch 12 [40/209] Loss: 0.3377 | Batch Time: 6.06s | ETA: 0:15:57
+Epoch 12 [50/209] Loss: 0.2645 | Batch Time: 5.75s | ETA: 0:14:57
+Epoch 12 [60/209] Loss: 0.7907 | Batch Time: 4.98s | ETA: 0:13:56
+Epoch 12 [70/209] Loss: 1.0142 | Batch Time: 5.03s | ETA: 0:13:00
+Epoch 12 [80/209] Loss: 1.3714 | Batch Time: 5.89s | ETA: 0:12:10
+Epoch 12 [90/209] Loss: 1.3716 | Batch Time: 6.84s | ETA: 0:11:09
+Epoch 12 [100/209] Loss: 0.3122 | Batch Time: 6.45s | ETA: 0:10:16
+Epoch 12 [110/209] Loss: 0.8143 | Batch Time: 5.76s | ETA: 0:09:24
+Epoch 12 [120/209] Loss: 1.3116 | Batch Time: 5.52s | ETA: 0:08:27
+Epoch 12 [130/209] Loss: 0.9504 | Batch Time: 5.53s | ETA: 0:07:23
+Epoch 12 [140/209] Loss: 1.3568 | Batch Time: 6.41s | ETA: 0:06:24
+Epoch 12 [150/209] Loss: 0.6390 | Batch Time: 5.70s | ETA: 0:05:26
+Epoch 12 [160/209] Loss: 1.2243 | Batch Time: 5.77s | ETA: 0:04:30
+Epoch 12 [170/209] Loss: 1.4758 | Batch Time: 5.22s | ETA: 0:03:32
+Epoch 12 [180/209] Loss: 1.1673 | Batch Time: 6.20s | ETA: 0:02:38
+Epoch 12 [190/209] Loss: 0.5309 | Batch Time: 6.04s | ETA: 0:01:43
+Epoch 12 [200/209] Loss: 1.1194 | Batch Time: 5.28s | ETA: 0:00:48
+
+Epoch 12 Train Metrics:
+  µAP: 0.4780
+  R@P90: 0.0000
+  Accuracy: 0.4808
+  Avg Loss: 1.0100
+Epoch 12 completed in 19.55 minutes
+
+============================================================
+Progress: 13/18 epochs (72.2%)
+Elapsed: 4:16:07
+ETA: 1:38:30
+Total estimated time: 5:54:38
+============================================================
+
+Epoch 13 [0/209] Loss: 0.8578 | Batch Time: 10.45s | ETA: 0:36:25
+Epoch 13 [10/209] Loss: 0.4256 | Batch Time: 4.71s | ETA: 0:20:08
+Epoch 13 [20/209] Loss: 0.5876 | Batch Time: 5.80s | ETA: 0:18:23
+Epoch 13 [30/209] Loss: 1.1251 | Batch Time: 5.98s | ETA: 0:17:38
+Epoch 13 [40/209] Loss: 1.2429 | Batch Time: 6.21s | ETA: 0:16:39
+Epoch 13 [50/209] Loss: 0.7394 | Batch Time: 5.23s | ETA: 0:15:15
+Epoch 13 [60/209] Loss: 1.1342 | Batch Time: 5.93s | ETA: 0:14:19
+Epoch 13 [70/209] Loss: 1.3168 | Batch Time: 6.46s | ETA: 0:13:30
+Epoch 13 [80/209] Loss: 0.8712 | Batch Time: 5.91s | ETA: 0:12:21
+Epoch 13 [90/209] Loss: 0.6459 | Batch Time: 6.19s | ETA: 0:11:23
+Epoch 13 [100/209] Loss: 1.4527 | Batch Time: 5.28s | ETA: 0:10:23
+Epoch 13 [110/209] Loss: 1.6410 | Batch Time: 5.70s | ETA: 0:09:25
+Epoch 13 [120/209] Loss: 1.0713 | Batch Time: 5.79s | ETA: 0:08:22
+Epoch 13 [130/209] Loss: 1.1707 | Batch Time: 5.62s | ETA: 0:07:21
+Epoch 13 [140/209] Loss: 1.2084 | Batch Time: 4.85s | ETA: 0:06:15
+Epoch 13 [150/209] Loss: 1.0574 | Batch Time: 5.51s | ETA: 0:05:18
+Epoch 13 [160/209] Loss: 1.5789 | Batch Time: 5.46s | ETA: 0:04:21
+Epoch 13 [170/209] Loss: 0.6794 | Batch Time: 5.78s | ETA: 0:03:27
+Epoch 13 [180/209] Loss: 1.2060 | Batch Time: 5.76s | ETA: 0:02:35
+Epoch 13 [190/209] Loss: 1.2859 | Batch Time: 5.58s | ETA: 0:01:42
+Epoch 13 [200/209] Loss: 1.5668 | Batch Time: 5.41s | ETA: 0:00:48
+
+Epoch 13 Train Metrics:
+  µAP: 0.4856
+  R@P90: 0.0000
+  Accuracy: 0.4964
+  Avg Loss: 1.0367
+Epoch 13 completed in 19.60 minutes
+
+============================================================
+Progress: 14/18 epochs (77.8%)
+Elapsed: 4:35:44
+ETA: 1:18:46
+Total estimated time: 5:54:30
+============================================================
+
+Epoch 14 [0/209] Loss: 0.8820 | Batch Time: 7.88s | ETA: 0:27:26
+Epoch 14 [10/209] Loss: 1.2526 | Batch Time: 4.95s | ETA: 0:19:39
+Epoch 14 [20/209] Loss: 0.8268 | Batch Time: 6.05s | ETA: 0:18:09
+Epoch 14 [30/209] Loss: 0.6508 | Batch Time: 6.06s | ETA: 0:17:15
+Epoch 14 [40/209] Loss: 0.3730 | Batch Time: 6.30s | ETA: 0:16:18
+Epoch 14 [50/209] Loss: 1.2385 | Batch Time: 7.03s | ETA: 0:15:13
+Epoch 14 [60/209] Loss: 1.3521 | Batch Time: 6.55s | ETA: 0:14:17
+Epoch 14 [70/209] Loss: 1.7127 | Batch Time: 6.61s | ETA: 0:13:26
+Epoch 14 [80/209] Loss: 1.0062 | Batch Time: 5.72s | ETA: 0:12:21
+Epoch 14 [90/209] Loss: 1.0732 | Batch Time: 5.52s | ETA: 0:11:22
+Epoch 14 [100/209] Loss: 1.1295 | Batch Time: 5.13s | ETA: 0:10:23
+Epoch 14 [110/209] Loss: 0.6648 | Batch Time: 5.76s | ETA: 0:09:27
+Epoch 14 [120/209] Loss: 1.4595 | Batch Time: 5.36s | ETA: 0:08:25
+Epoch 14 [130/209] Loss: 1.0578 | Batch Time: 5.37s | ETA: 0:07:27
+Epoch 14 [140/209] Loss: 0.6034 | Batch Time: 5.85s | ETA: 0:06:28
+Epoch 14 [150/209] Loss: 1.0483 | Batch Time: 5.89s | ETA: 0:05:28
+Epoch 14 [160/209] Loss: 1.0947 | Batch Time: 5.68s | ETA: 0:04:28
+Epoch 14 [170/209] Loss: 0.9585 | Batch Time: 6.03s | ETA: 0:03:30
+Epoch 14 [180/209] Loss: 1.3056 | Batch Time: 5.76s | ETA: 0:02:36
+Epoch 14 [190/209] Loss: 0.9333 | Batch Time: 5.86s | ETA: 0:01:42
+Epoch 14 [200/209] Loss: 1.4898 | Batch Time: 5.51s | ETA: 0:00:48
+
+Epoch 14 Train Metrics:
+  µAP: 0.4916
+  R@P90: 0.0000
+  Accuracy: 0.4904
+  Avg Loss: 1.0245
+Epoch 14 completed in 19.66 minutes
+
+============================================================
+Progress: 15/18 epochs (83.3%)
+Elapsed: 4:55:23
+ETA: 0:59:04
+Total estimated time: 5:54:28
+============================================================
+
+Saved checkpoint: ./checkpoints_baseline_20251213_174147/checkpoint_epoch_15.pt
+Epoch 15 [0/209] Loss: 0.9568 | Batch Time: 4.65s | ETA: 0:16:11
+Epoch 15 [10/209] Loss: 1.2510 | Batch Time: 5.34s | ETA: 0:19:04
+Epoch 15 [20/209] Loss: 1.4395 | Batch Time: 5.97s | ETA: 0:17:52
+Epoch 15 [30/209] Loss: 1.5641 | Batch Time: 6.35s | ETA: 0:17:02
+Epoch 15 [40/209] Loss: 1.6750 | Batch Time: 7.11s | ETA: 0:16:02
+Epoch 15 [50/209] Loss: 1.0013 | Batch Time: 6.60s | ETA: 0:15:09
+Epoch 15 [60/209] Loss: 1.0503 | Batch Time: 6.40s | ETA: 0:14:05
+Epoch 15 [70/209] Loss: 0.7134 | Batch Time: 6.84s | ETA: 0:13:11
+Epoch 15 [80/209] Loss: 1.2126 | Batch Time: 6.48s | ETA: 0:12:09
+Epoch 15 [90/209] Loss: 1.3067 | Batch Time: 6.33s | ETA: 0:11:12
+Epoch 15 [100/209] Loss: 1.1687 | Batch Time: 5.55s | ETA: 0:10:16
+Epoch 15 [110/209] Loss: 0.8425 | Batch Time: 5.43s | ETA: 0:09:14
+Epoch 15 [120/209] Loss: 1.5954 | Batch Time: 5.60s | ETA: 0:08:20
+Epoch 15 [130/209] Loss: 0.9364 | Batch Time: 5.38s | ETA: 0:07:19
+Epoch 15 [140/209] Loss: 0.8392 | Batch Time: 4.69s | ETA: 0:06:19
+Epoch 15 [150/209] Loss: 0.2701 | Batch Time: 5.43s | ETA: 0:05:19
+Epoch 15 [160/209] Loss: 0.6791 | Batch Time: 5.40s | ETA: 0:04:25
+Epoch 15 [170/209] Loss: 0.9129 | Batch Time: 5.58s | ETA: 0:03:27
+Epoch 15 [180/209] Loss: 1.3309 | Batch Time: 5.55s | ETA: 0:02:34
+Epoch 15 [190/209] Loss: 1.3605 | Batch Time: 4.47s | ETA: 0:01:40
+Epoch 15 [200/209] Loss: 1.2278 | Batch Time: 5.84s | ETA: 0:00:47
+
+Epoch 15 Train Metrics:
+  µAP: 0.5078
+  R@P90: 0.0000
+  Accuracy: 0.5076
+  Avg Loss: 1.0291
+Epoch 15 completed in 19.52 minutes
+
+============================================================
+Progress: 16/18 epochs (88.9%)
+Elapsed: 5:14:56
+ETA: 0:39:22
+Total estimated time: 5:54:18
+============================================================
+
+Epoch 16 [0/209] Loss: 1.0908 | Batch Time: 8.80s | ETA: 0:30:40
+Epoch 16 [10/209] Loss: 0.9654 | Batch Time: 5.03s | ETA: 0:19:51
+Epoch 16 [20/209] Loss: 1.4539 | Batch Time: 5.94s | ETA: 0:18:34
+Epoch 16 [30/209] Loss: 1.1281 | Batch Time: 6.17s | ETA: 0:17:15
+Epoch 16 [40/209] Loss: 0.9636 | Batch Time: 4.98s | ETA: 0:16:25
+Epoch 16 [50/209] Loss: 1.3000 | Batch Time: 5.81s | ETA: 0:15:13
+Epoch 16 [60/209] Loss: 1.3013 | Batch Time: 5.97s | ETA: 0:14:22
+Epoch 16 [70/209] Loss: 1.1244 | Batch Time: 5.51s | ETA: 0:13:22
+Epoch 16 [80/209] Loss: 0.9933 | Batch Time: 6.60s | ETA: 0:12:26
+Epoch 16 [90/209] Loss: 0.9507 | Batch Time: 6.93s | ETA: 0:11:24
+Epoch 16 [100/209] Loss: 1.3052 | Batch Time: 6.77s | ETA: 0:10:24
+Epoch 16 [110/209] Loss: 1.0118 | Batch Time: 7.25s | ETA: 0:09:23
+Epoch 16 [120/209] Loss: 1.2167 | Batch Time: 6.24s | ETA: 0:08:22
+Epoch 16 [130/209] Loss: 1.1817 | Batch Time: 5.59s | ETA: 0:07:20
+Epoch 16 [140/209] Loss: 1.5096 | Batch Time: 5.82s | ETA: 0:06:18
+Epoch 16 [150/209] Loss: 1.3556 | Batch Time: 5.93s | ETA: 0:05:21
+Epoch 16 [160/209] Loss: 1.2806 | Batch Time: 5.59s | ETA: 0:04:22
+Epoch 16 [170/209] Loss: 1.1964 | Batch Time: 5.78s | ETA: 0:03:27
+Epoch 16 [180/209] Loss: 0.4712 | Batch Time: 5.88s | ETA: 0:02:33
+Epoch 16 [190/209] Loss: 1.4153 | Batch Time: 4.81s | ETA: 0:01:39
+Epoch 16 [200/209] Loss: 0.1341 | Batch Time: 4.79s | ETA: 0:00:46
+
+Epoch 16 Train Metrics:
+  µAP: 0.4836
+  R@P90: 0.0000
+  Accuracy: 0.4840
+  Avg Loss: 0.9301
+Epoch 16 completed in 19.45 minutes
+
+============================================================
+Progress: 17/18 epochs (94.4%)
+Elapsed: 5:34:23
+ETA: 0:19:40
+Total estimated time: 5:54:03
+============================================================
+
+Epoch 17 [0/209] Loss: 0.2681 | Batch Time: 8.77s | ETA: 0:30:32
+Epoch 17 [10/209] Loss: 1.3967 | Batch Time: 5.63s | ETA: 0:20:46
+Epoch 17 [20/209] Loss: 0.0706 | Batch Time: 5.69s | ETA: 0:18:42
+Epoch 17 [30/209] Loss: 0.6172 | Batch Time: 6.29s | ETA: 0:17:41
+Epoch 17 [40/209] Loss: 0.7347 | Batch Time: 5.34s | ETA: 0:16:28
+Epoch 17 [50/209] Loss: 0.2827 | Batch Time: 5.32s | ETA: 0:15:19
+Epoch 17 [60/209] Loss: 1.5239 | Batch Time: 5.63s | ETA: 0:14:17
+Epoch 17 [70/209] Loss: 0.9496 | Batch Time: 5.19s | ETA: 0:13:22
+Epoch 17 [80/209] Loss: 1.0219 | Batch Time: 5.28s | ETA: 0:12:20
+Epoch 17 [90/209] Loss: 0.6158 | Batch Time: 5.11s | ETA: 0:11:26
+Epoch 17 [100/209] Loss: 0.7908 | Batch Time: 4.78s | ETA: 0:10:24
+Epoch 17 [110/209] Loss: 0.5914 | Batch Time: 6.31s | ETA: 0:09:25
+Epoch 17 [120/209] Loss: 1.5383 | Batch Time: 4.72s | ETA: 0:08:23
+Epoch 17 [130/209] Loss: 0.9543 | Batch Time: 6.22s | ETA: 0:07:24
+Epoch 17 [140/209] Loss: 0.3487 | Batch Time: 5.80s | ETA: 0:06:22
+Epoch 17 [150/209] Loss: 0.4334 | Batch Time: 4.80s | ETA: 0:05:22
+Epoch 17 [160/209] Loss: 1.2102 | Batch Time: 4.66s | ETA: 0:04:23
+Epoch 17 [170/209] Loss: 0.9053 | Batch Time: 4.69s | ETA: 0:03:28
+Epoch 17 [180/209] Loss: 0.3037 | Batch Time: 5.74s | ETA: 0:02:34
+Epoch 17 [190/209] Loss: 1.4367 | Batch Time: 4.68s | ETA: 0:01:40
+Epoch 17 [200/209] Loss: 0.0355 | Batch Time: 5.04s | ETA: 0:00:47
+
+Epoch 17 Train Metrics:
+  µAP: 0.5038
+  R@P90: 0.0000
+  Accuracy: 0.5052
+  Avg Loss: 0.8667
+Epoch 17 completed in 19.58 minutes
+
+============================================================
+Progress: 18/18 epochs (100.0%)
+Elapsed: 5:53:58
+ETA: 0:00:00
+Total estimated time: 5:53:58
+============================================================
+
+
+
+Fine-tuning on NDEC for 3 epochs...
+NDEC Dataset:
+  Total samples: 49252
+NDEC Dataset:
+  Total samples: 49252
+  Positive pairs: 5009
+  Positive pairs: 5009  Negative pairs: 0
+
+  Negative pairs: 0
+  Using 2504 samples (50.0% of dataset)
+  Using 2504 samples (50.0% of dataset)
+Epoch 18 [0/105] Loss: 1.5150 | Batch Time: 12.32s | ETA: 0:21:34
+Epoch 18 [10/105] Loss: 1.5188 | Batch Time: 6.24s | ETA: 0:10:26
+Epoch 18 [20/105] Loss: 1.4576 | Batch Time: 6.33s | ETA: 0:08:41
+Epoch 18 [30/105] Loss: 1.4795 | Batch Time: 4.84s | ETA: 0:07:26
+Epoch 18 [40/105] Loss: 1.5127 | Batch Time: 5.32s | ETA: 0:06:17
+Epoch 18 [50/105] Loss: 1.4823 | Batch Time: 4.75s | ETA: 0:05:12
+Epoch 18 [60/105] Loss: 1.5043 | Batch Time: 6.16s | ETA: 0:04:10
+Epoch 18 [70/105] Loss: 1.4592 | Batch Time: 5.21s | ETA: 0:03:11
+Epoch 18 [80/105] Loss: 1.5280 | Batch Time: 4.37s | ETA: 0:02:15
+Epoch 18 [90/105] Loss: 1.5298 | Batch Time: 4.84s | ETA: 0:01:21
+Epoch 18 [100/105] Loss: 1.5259 | Batch Time: 5.19s | ETA: 0:00:26
+
+Epoch 18 Train Metrics:
+  µAP: 1.0000
+  R@P90: 1.0000
+  Accuracy: 1.0000
+  Avg Loss: 1.4824
+Epoch 18 completed in 157.77 minutes
+Epoch 19 [0/105] Loss: 1.4697 | Batch Time: 7.99s | ETA: 0:13:58
+Epoch 19 [10/105] Loss: 1.5476 | Batch Time: 5.02s | ETA: 0:09:05
+Epoch 19 [20/105] Loss: 1.5454 | Batch Time: 5.19s | ETA: 0:07:58
+Epoch 19 [30/105] Loss: 1.4684 | Batch Time: 4.86s | ETA: 0:06:58
+Epoch 19 [40/105] Loss: 1.5370 | Batch Time: 6.05s | ETA: 0:05:58

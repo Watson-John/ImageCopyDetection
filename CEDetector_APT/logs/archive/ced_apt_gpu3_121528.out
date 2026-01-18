@@ -1,0 +1,143 @@
+=========================================
+SLURM Job ID: 121528
+Job Name: dinov3_ced_apt_gpu3
+Node: gpu3
+Start Time: Sat Dec 13 17:50:39 EST 2025
+=========================================
+Activating conda environment: gpu_training
+GPUs available:
+GPU 0: NVIDIA A30 (UUID: GPU-29441b90-6420-fd35-c439-d03f77885dd3)
+GPU 1: NVIDIA A30 (UUID: GPU-153472c2-3399-ec40-a684-2443147fee35)
+GPU 2: NVIDIA A30 (UUID: GPU-5ad644da-695f-1a04-39a7-004e8d27c563)
+=========================================
+Training Configuration:
+  Epochs (DISC21): 18
+  Epochs (NDEC): 3
+  Batch Size: 12
+  Learning Rate: 2e-4
+  Subset Fraction: 0.5
+  Mixed Precision: true
+  Save Directory: ./checkpoints_20251213_175039
+  Number of GPUs: 3
+  Num Workers (per rank): 46
+=========================================
+Starting training...
+DDP initialized: 3 GPUs (NCCL backend)
+TF32 enabled for Ampere GPUs (A30)
+Training CEDetector with APT on 3 GPUs
+Arguments: Namespace(disc21_path='/home/jowatson/Deep Learning/DISC21', ndec_path='/home/jowatson/Deep Learning/NDEC', hf_token_path='/home/jowatson/Deep Learning/Code/.env', epochs=18, ndec_epochs=3, batch_size=12, lr=0.0002, subset_fraction=0.5, num_workers=46, use_amp=True, dinov3_model='facebook/dinov3-vitb16-pretrain-lvd1689m', freeze_backbone=False, save_dir='./checkpoints_20251213_175039', save_every=5)
+Logging metrics to: ./checkpoints_20251213_175039/training_metrics.jsonl
+
+Loading DISC21 dataset...
+Found 20 reference directories
+Found 20 reference directories
+Found 20 reference directories
+Indexed 1000000 reference images
+Indexed 1000000 reference images
+Indexed 1000000 reference images
+Using 5000 samples (50.0% of dataset)
+Using 5000 samples (50.0% of dataset)
+Using 5000 samples (50.0% of dataset)
+Found 5000 valid query-reference pairsFound 5000 valid query-reference pairs
+
+Found 5000 valid query-reference pairs
+
+Creating model...
+Loading DiNOv3 model: facebook/dinov3-vitb16-pretrain-lvd1689m
+Loading DiNOv3 model: facebook/dinov3-vitb16-pretrain-lvd1689m
+Loading DiNOv3 model: facebook/dinov3-vitb16-pretrain-lvd1689m
+DiNOv3 loaded: embed_dim=768, layers=12
+DiNOv3 loaded: embed_dim=768, layers=12
+DiNOv3 loaded: embed_dim=768, layers=12
+gpu3:3399091:3399091 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu3:3399091:3399091 [0] NCCL INFO Bootstrap : Using eth0:10.0.0.103<0>
+gpu3:3399091:3399091 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu3:3399091:3399091 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu3:3399091:3399091 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu3:3399091:3399091 [0] NCCL INFO cudaDriverVersion 12040
+NCCL version 2.21.5+cuda11.0
+gpu3:3399092:3399092 [1] NCCL INFO cudaDriverVersion 12040
+gpu3:3399092:3399092 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu3:3399092:3399092 [1] NCCL INFO Bootstrap : Using eth0:10.0.0.103<0>
+gpu3:3399093:3399093 [2] NCCL INFO cudaDriverVersion 12040
+gpu3:3399092:3399092 [1] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu3:3399092:3399092 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu3:3399092:3399092 [1] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu3:3399093:3399093 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu3:3399093:3399093 [2] NCCL INFO Bootstrap : Using eth0:10.0.0.103<0>
+gpu3:3399093:3399093 [2] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpu3:3399093:3399093 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpu3:3399093:3399093 [2] NCCL INFO NET/Plugin: Using internal network plugin.
+gpu3:3399091:3399091 [0] NCCL INFO Comm config Blocking set to 1
+gpu3:3399091:3400300 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+gpu3:3399092:3399092 [1] NCCL INFO Comm config Blocking set to 1
+gpu3:3399092:3400301 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+gpu3:3399092:3400301 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu3:3399091:3400300 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu3:3399093:3399093 [2] NCCL INFO Comm config Blocking set to 1
+gpu3:3399093:3400302 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+gpu3:3399093:3400302 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker0,lo
+gpu3:3399093:3400302 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB eth0:10.0.0.103<0>
+gpu3:3399093:3400302 [2] NCCL INFO Using non-device net plugin version 0
+gpu3:3399093:3400302 [2] NCCL INFO Using network IB
+gpu3:3399091:3400300 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB eth0:10.0.0.103<0>
+gpu3:3399091:3400300 [0] NCCL INFO Using non-device net plugin version 0
+gpu3:3399091:3400300 [0] NCCL INFO Using network IB
+gpu3:3399092:3400301 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB eth0:10.0.0.103<0>
+gpu3:3399092:3400301 [1] NCCL INFO Using non-device net plugin version 0
+gpu3:3399092:3400301 [1] NCCL INFO Using network IB
+gpu3:3399091:3400300 [0] NCCL INFO ncclCommInitRank comm 0xe0be5c0 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId 31000 commId 0x5590d88c416e3d - Init START
+gpu3:3399093:3400302 [2] NCCL INFO ncclCommInitRank comm 0x19f40140 rank 2 nranks 3 cudaDev 2 nvmlDev 2 busId ca000 commId 0x5590d88c416e3d - Init START
+gpu3:3399092:3400301 [1] NCCL INFO ncclCommInitRank comm 0xe3bff00 rank 1 nranks 3 cudaDev 1 nvmlDev 1 busId 4b000 commId 0x5590d88c416e3d - Init START
+gpu3:3399093:3400302 [2] NCCL INFO Setting affinity for GPU 2 to ffff0000,ffff0000
+gpu3:3399091:3400300 [0] NCCL INFO Setting affinity for GPU 0 to ffff,0000ffff
+gpu3:3399092:3400301 [1] NCCL INFO Setting affinity for GPU 1 to ffff,0000ffff
+gpu3:3399093:3400302 [2] NCCL INFO comm 0x19f40140 rank 2 nRanks 3 nNodes 1 localRanks 3 localRank 2 MNNVL 0
+gpu3:3399092:3400301 [1] NCCL INFO comm 0xe3bff00 rank 1 nRanks 3 nNodes 1 localRanks 3 localRank 1 MNNVL 0
+gpu3:3399091:3400300 [0] NCCL INFO comm 0xe0be5c0 rank 0 nRanks 3 nNodes 1 localRanks 3 localRank 0 MNNVL 0
+gpu3:3399093:3400302 [2] NCCL INFO Trees [0] -1/-1/-1->2->1 [1] -1/-1/-1->2->1
+gpu3:3399093:3400302 [2] NCCL INFO P2P Chunksize set to 524288
+gpu3:3399092:3400301 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+gpu3:3399092:3400301 [1] NCCL INFO P2P Chunksize set to 524288
+gpu3:3399091:3400300 [0] NCCL INFO Channel 00/02 :    0   1   2
+gpu3:3399091:3400300 [0] NCCL INFO Channel 01/02 :    0   1   2
+gpu3:3399091:3400300 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+gpu3:3399091:3400300 [0] NCCL INFO P2P Chunksize set to 524288
+gpu3:3399092:3400301 [1] NCCL INFO Channel 00 : 1[1] -> 2[2] via SHM/direct/direct
+gpu3:3399092:3400301 [1] NCCL INFO Channel 01 : 1[1] -> 2[2] via SHM/direct/direct
+gpu3:3399093:3400302 [2] NCCL INFO Channel 00 : 2[2] -> 0[0] via SHM/direct/direct
+gpu3:3399093:3400302 [2] NCCL INFO Channel 01 : 2[2] -> 0[0] via SHM/direct/direct
+gpu3:3399091:3400300 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu3:3399091:3400300 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/IPC/read
+gpu3:3399093:3400302 [2] NCCL INFO Connected all rings
+gpu3:3399091:3400300 [0] NCCL INFO Connected all rings
+gpu3:3399092:3400301 [1] NCCL INFO Connected all rings
+gpu3:3399093:3400302 [2] NCCL INFO Channel 00 : 2[2] -> 1[1] via SHM/direct/direct
+gpu3:3399093:3400302 [2] NCCL INFO Channel 01 : 2[2] -> 1[1] via SHM/direct/direct
+gpu3:3399092:3400301 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu3:3399092:3400301 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/IPC/read
+gpu3:3399091:3400300 [0] NCCL INFO Connected all trees
+gpu3:3399091:3400300 [0] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+gpu3:3399091:3400300 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu3:3399092:3400301 [1] NCCL INFO Connected all trees
+gpu3:3399093:3400302 [2] NCCL INFO Connected all trees
+gpu3:3399092:3400301 [1] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+gpu3:3399093:3400302 [2] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+gpu3:3399092:3400301 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu3:3399093:3400302 [2] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu3:3399091:3400300 [0] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu3:3399091:3400300 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu3:3399091:3400300 [0] NCCL INFO ncclCommInitRank comm 0xe0be5c0 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId 31000 commId 0x5590d88c416e3d - Init COMPLETE
+gpu3:3399093:3400302 [2] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu3:3399093:3400302 [2] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu3:3399092:3400301 [1] NCCL INFO TUNER/Plugin: Plugin load returned 11 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpu3:3399093:3400302 [2] NCCL INFO ncclCommInitRank comm 0x19f40140 rank 2 nranks 3 cudaDev 2 nvmlDev 2 busId ca000 commId 0x5590d88c416e3d - Init COMPLETE
+gpu3:3399092:3400301 [1] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpu3:3399092:3400301 [1] NCCL INFO ncclCommInitRank comm 0xe3bff00 rank 1 nranks 3 cudaDev 1 nvmlDev 1 busId 4b000 commId 0x5590d88c416e3d - Init COMPLETE
+Mixed precision training: Enabled
+
+Training on DISC21 for 18 epochs...
+Epoch 0 [0/139] Loss: nan | Logits: [nan, nan] | Preds: [nan, nan] | Labels: 0.500 | Batch Time: 8.47s | ETA: 0:19:37
+Epoch 0 [10/139] Loss: nan | Logits: [nan, nan] | Preds: [nan, nan] | Labels: 0.500 | Batch Time: 7.98s | ETA: 0:16:04
+Epoch 0 [20/139] Loss: nan | Logits: [nan, nan] | Preds: [nan, nan] | Labels: 0.333 | Batch Time: 6.56s | ETA: 0:14:28
+Epoch 0 [30/139] Loss: nan | Logits: [nan, nan] | Preds: [nan, nan] | Labels: 0.583 | Batch Time: 7.13s | ETA: 0:13:16
