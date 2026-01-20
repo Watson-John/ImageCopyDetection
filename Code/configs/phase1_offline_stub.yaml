@@ -1,0 +1,60 @@
+# Phase 1 Offline Stub Configuration
+# Adaptive-DINO-ICD Training with timm ViT backbone
+#
+# Use this configuration for:
+# - Local testing without network access
+# - Running unit tests
+# - Sanity checking the pipeline
+#
+# This uses a timm ViT-Base/16 as a stand-in for DINOv3.
+# NOT suitable for production training.
+
+backbone:
+  model_name: "vit_base_patch16_224"
+  offline_stub: true
+  pretrained: true
+  embed_dim: 768
+  freeze_backbone: false
+
+apt:
+  entropy_scales: [8, 16, 32]
+  min_patch_size: 8
+  max_patch_size: 64
+  entropy_thresholds:
+    8: 0.3
+    16: 0.5
+    32: 0.7
+  normalize_entropy: true
+  embed_dim: 768
+  smallest_patch_size: 16
+
+loss:
+  lambda_mtr: 0.5
+  temperature: 0.07
+  margin: 0.2
+  use_hard_negatives: true
+  normalize_features: true
+
+data:
+  disc_root: "./data/disc"
+  ndec_annotation: "./data/ndec/pairs.csv"
+  ndec_image_root: "./data/ndec/images"
+  image_size: 224
+  disc_ratio: 0.7
+  batch_size: 4  # Small batch for testing
+  num_workers: 2
+  crop_ratio_range: [0.3, 0.8]
+  use_augly: false
+  hard_aug_prob: 0.5
+
+training:
+  epochs: 2  # Short training for testing
+  lr: 0.0001
+  weight_decay: 0.01
+  seed: 42
+  checkpoint_dir: "./checkpoints"
+  log_dir: "./logs"
+  log_interval: 10
+  save_interval: 1
+  gradient_clip: 1.0
+  warmup_steps: 0

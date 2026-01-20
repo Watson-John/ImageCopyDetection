@@ -1,0 +1,61 @@
+# Phase 1 DDP Configuration with Real Data
+# Adaptive-DINO-ICD Training on Multiple GPUs
+#
+# Uses real DINOv3 model and real DISC21/NDEC datasets.
+# Optimized for 3x A30 GPUs (gpu3) with DDP.
+#
+# Run with:
+#   sbatch scripts/slurm_train_ddp.sh
+
+backbone:
+  model_name: "facebook/dinov3-vitb16-pretrain-lvd1689m"
+  offline_stub: false
+  pretrained: true
+  embed_dim: 768
+  freeze_backbone: false
+
+apt:
+  entropy_scales: [8, 16, 32]
+  min_patch_size: 8
+  max_patch_size: 64
+  entropy_thresholds:
+    8: 0.3
+    16: 0.5
+    32: 0.7
+  normalize_entropy: true
+  embed_dim: 768
+  smallest_patch_size: 16
+
+loss:
+  lambda_mtr: 0.5
+  temperature: 0.07
+  margin: 0.2
+  use_hard_negatives: true
+  normalize_features: true
+
+data:
+  # Real data paths
+  disc_root: "/home/jowatson/Deep Learning/DISC21"
+  ndec_annotation: "/home/jowatson/Deep Learning/NDEC/pairs_converted.csv"
+  ndec_image_root: "/home/jowatson/Deep Learning/NDEC"
+  image_size: 224
+  disc_ratio: 0.7
+  # Per-GPU batch size (effective = batch_size * num_gpus)
+  # With 3 GPUs: effective batch = 32 * 3 = 96
+  batch_size: 32
+  num_workers: 4
+  crop_ratio_range: [0.3, 0.8]
+  use_augly: false
+  hard_aug_prob: 0.5
+
+training:
+  epochs: 50
+  lr: 0.0001
+  weight_decay: 0.01
+  seed: 42
+  checkpoint_dir: "./checkpoints"
+  log_dir: "./logs"
+  log_interval: 100
+  save_interval: 5
+  gradient_clip: 1.0
+  warmup_steps: 1000

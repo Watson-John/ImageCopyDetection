@@ -1,0 +1,268 @@
+Metadata-Version: 2.4
+Name: adaptive-dino-icd
+Version: 0.1.0
+Summary: Adaptive-DINO Image Copy Detection with APT tokenization and ASL loss
+Author: John Watson
+License: MIT
+Project-URL: Homepage, https://github.com/Watson-John/ImageCopyDetection
+Project-URL: Repository, https://github.com/Watson-John/ImageCopyDetection
+Keywords: image-copy-detection,deep-learning,vision-transformer,dino
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.0.0
+Requires-Dist: torchvision>=0.15.0
+Requires-Dist: timm>=0.9.0
+Requires-Dist: transformers>=4.30.0
+Requires-Dist: huggingface-hub>=0.16.0
+Requires-Dist: numpy>=1.23.0
+Requires-Dist: pillow>=9.0.0
+Requires-Dist: albumentations>=1.3.0
+Requires-Dist: opencv-python>=4.7.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: tqdm>=4.65.0
+Requires-Dist: pandas>=1.5.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Provides-Extra: augly
+Requires-Dist: augly>=1.0.0; extra == "augly"
+Provides-Extra: all
+Requires-Dist: adaptive-dino-icd[augly,dev]; extra == "all"
+
+# Adaptive-DINO-ICD
+
+Image Copy Detection with Adaptive Patch Tokenization and Asymmetric Similarity Learning.
+
+## Overview
+
+This repository implements Phase 1 of an Image Copy Detection system integrating:
+
+- **DINOv3 Backbone**: Vision transformer from HuggingFace (`facebook/dinov3-vitb16-pretrain-lvd1689m`)
+- **APT (Adaptive Patch Tokenization)**: Entropy-based adaptive patch sizing with quadtree selection
+- **ASL (Asymmetric Similarity Learning)**: Direction-aware loss with norm ratio enforcement
+- **D2LV-inspired Inference**: Global-local + local-global scoring interface
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Watson-John/ImageCopyDetection.git
+cd ImageCopyDetection/adaptive_dino_icd
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Or install dependencies only
+pip install -r requirements.txt
+```
+
+### Requirements
+
+- Python >= 3.9
+- PyTorch >= 2.0.0
+- timm >= 0.9.0
+- transformers >= 4.30.0
+- albumentations >= 1.3.0
+
+## Quick Start
+
+### 1. Generate Dummy Data
+
+```bash
+python scripts/make_dummy_data.py --output_dir ./data
+```
+
+This creates:
+- `./data/disc/`: Synthetic images for DISC stream
+- `./data/ndec/`: Labeled pairs for NDEC stream
+
+### 2. Run Sanity Check
+
+```bash
+python scripts/sanity_check_forward.py
+```
+
+Verifies all components work correctly with offline stub.
+
+### 3. Train (Offline Stub)
+
+```bash
+python scripts/train_phase1.py --config configs/phase1_offline_stub.yaml
+```
+
+### 4. Run Tests
+
+```bash
+pytest tests/ -v
+```
+
+## Repository Structure
+
+```
+adaptive_dino_icd/
+├── configs/
+│   ├── phase1_default.yaml       # Production config (requires HF access)
+│   └── phase1_offline_stub.yaml  # Testing config (no network needed)
+├── src/adaptive_dino_icd/
+│   ├── backbone/
+│   │   ├── dinov3_hf_wrapper.py  # DINOv3 loading and feature extraction
+│   │   ├── adaptive_backbone.py  # Full APT + DINOv3 pipeline
+│   │   └── rope_adapter.py       # RoPE position encoding adapter
+│   ├── apt/
+│   │   ├── entropy_scorer.py     # Multi-scale entropy computation
+│   │   ├── patch_selector.py     # Quadtree adaptive selection
+│   │   ├── patch_aggregator.py   # Variable-size patch embedding
+│   │   └── sequence_packer.py    # Attention mask handling
+│   ├── losses/
+│   │   ├── asl_loss.py           # Asymmetric Similarity Learning loss
+│   │   └── metric_losses.py      # Contrastive and norm ratio losses
+│   ├── data/
+│   │   ├── disc_dataset.py       # DISC unlabeled image dataset
+│   │   ├── ndec_dataset.py       # NDEC labeled pairs dataset
+│   │   ├── batch_mixer.py        # 70/30 ratio batch mixing
+│   │   └── augmentations.py      # Albumentations pipeline
+│   ├── inference/
+│   │   ├── d2lv_matcher.py       # Global-local matching
+│   │   └── scoring.py            # Similarity functions
+│   └── utils/
+│       ├── config.py             # Dataclass configurations
+│       ├── logging.py            # Logging utilities
+│       └── seed.py               # Reproducibility
+├── scripts/
+│   ├── train_phase1.py           # Training entrypoint
+│   ├── sanity_check_forward.py   # Forward pass verification
+│   └── make_dummy_data.py        # Dummy data generation
+└── tests/
+    ├── test_entropy_scorer.py
+    ├── test_patch_aggregator.py
+    ├── test_asl_loss.py
+    └── test_batch_mixer_ratio.py
+```
+
+## Key Components
+
+### Adaptive Patch Tokenization (APT)
+
+APT adapts patch sizes based on image content:
+
+1. **EntropyScorer**: Computes local entropy at multiple scales
+2. **PatchSelector**: Quadtree selection based on entropy thresholds
+3. **PatchAggregator**: Embeds variable-sized patches with ZeroMLP fusion
+
+```python
+from adaptive_dino_icd.apt import EntropyScorer, PatchSelector, PatchAggregator
+
+scorer = EntropyScorer(scales=[8, 16, 32])
+selector = PatchSelector(min_patch_size=8, max_patch_size=64)
+aggregator = PatchAggregator(embed_dim=768)
+
+entropy_maps = scorer(images)
+patches = selector(entropy_maps, image_size=(224, 224))
+tokens, coords = aggregator(images, patches)
+```
+
+### ASL Loss
+
+Asymmetric Similarity Learning with direction-aware norm ratio:
+
+```python
+from adaptive_dino_icd.losses import ASLLossModule
+
+loss_module = ASLLossModule(lambda_mtr=0.5)
+
+loss, info = loss_module(
+    feat_ref=global_feats_ref,
+    feat_query=global_feats_query,
+    is_copy=is_copy_labels,
+    stream=["disc", "ndec", ...],
+    direction=["full->crop", "a->b", ...],
+)
+```
+
+Loss formula for positives:
+```
+L = exp(1 - R) + λ * L_mtr
+where R = ||f(ref)|| / ||f(query)||
+```
+
+### Batch Mixing
+
+Fixed 70% DISC / 30% NDEC ratio per batch from step 0:
+
+```python
+from adaptive_dino_icd.data import BatchMixer
+
+mixer = BatchMixer(
+    disc_dataset, ndec_dataset,
+    batch_size=32,
+    disc_ratio=0.7,
+)
+
+for batch in mixer:
+    # batch contains mixed DISC and NDEC samples
+    # with exact 70/30 ratio each iteration
+```
+
+## Configuration
+
+### Default Config (Production)
+
+Requires HuggingFace access to DINOv3:
+
+```yaml
+backbone:
+  model_name: "facebook/dinov3-vitb16-pretrain-lvd1689m"
+  offline_stub: false
+```
+
+### Offline Stub (Testing)
+
+Uses timm ViT for testing without network:
+
+```yaml
+backbone:
+  model_name: "vit_base_patch16_224"
+  offline_stub: true
+```
+
+## Phase 1 Limitations
+
+- RoPE coordinate injection is computed but not applied (Phase 2)
+- Local features not used in ASL loss (Phase 2)
+- No full retrieval infrastructure (Phase 2)
+
+## Data Format
+
+### DISC Dataset
+
+Folder of unlabeled images:
+```
+data/disc/
+├── image_001.jpg
+├── image_002.jpg
+└── ...
+```
+
+### NDEC Dataset
+
+CSV/JSON with labeled pairs:
+```csv
+img_a_path,img_b_path,label,direction,similar_pair_for_metric
+pair_001_a.jpg,pair_001_b.jpg,pos,a->b,true
+pair_002_a.jpg,pair_002_b.jpg,neg,a->b,false
+```
+
+## License
+
+MIT License

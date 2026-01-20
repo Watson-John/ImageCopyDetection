@@ -1,0 +1,12 @@
+==========================================
+SLURM Job ID: 126232
+Running on node: gpu4
+Start time: Tue Jan 20 12:03:02 EST 2026
+==========================================
+
+GPU Information:
+name, memory.total [MiB], memory.free [MiB]
+NVIDIA A30, 24576 MiB, 24049 MiB
+NVIDIA A30, 24576 MiB, 24049 MiB
+
+Running sanity check with REAL data and REAL DINOv3 model...
