@@ -9,6 +9,8 @@
 #SBATCH --output=logs/train_ddp_%j.out
 #SBATCH --error=logs/train_ddp_%j.err
 #SBATCH --ntasks=1
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=jowatson@clarku.edu
 
 # Create logs directory
 mkdir -p logs
